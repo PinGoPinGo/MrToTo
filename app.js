@@ -215,7 +215,7 @@ function receivedAuthentication(event) {
  * then we'll simply confirm that we've received the attachment.
  * 
  */
-int test = 0;
+var test = 0;
 function receivedMessage(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
