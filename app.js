@@ -543,7 +543,7 @@ function sendButtonMessage(recipientId) {
  */
 
 function sendGenericMessage(recipientId,body,city) {
-  var todayInfo = "Today :D TempMin: "+(body["today"]["tempMin"])+" TempMax: "+(body["today"]["tempMax"]);
+  var todayInfo = "Today :D TempMin: "+body["today"]["tempMin"]+" TempMax: "+body["today"]["tempMax"];
   var messageData = {
     recipient: {
       id: recipientId
