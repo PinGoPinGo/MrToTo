@@ -5,7 +5,7 @@ var request = require("request")
           json: true
       }, function (error, response, body) {
           if (!error && response.statusCode === 200) {
-              console.log(JSON.stringify(body["today"]["tempMin"])); // Print the json response
+              console.log((body["today"]["tempMin"])+" sss"+ "  sd"); // Print the json response
               
           }
       });
