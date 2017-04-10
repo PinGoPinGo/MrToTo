@@ -5,12 +5,8 @@ var request = require("request")
           json: true
       }, function (error, response, body) {
           if (!error && response.statusCode === 200) {
-              console.log(body['today']['tempMin']) // Print the json response
-              if(body['today']!=null){
-                sendTextMessage(senderID,body['today']);
-              }else{
-                 sendTextMessage(senderID,"sorry !");   
-              }
+              console.log(JSON.stringify(body["today"]["tempMin"])); // Print the json response
+              
           }
       });
       
