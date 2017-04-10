@@ -1,6 +1,6 @@
 {
     "appSecret": "1f876885f9c1656acdd70b036445c6fd",
-    "pageAccessToken": "EAAGHq2ZAoJrQBAJqMIweWPWovXNWR1RX4Oz3YZC3AXmjCPzYOr6tZCMbUoL3ZBwYhcO6ltQjZADmejeBSE0FQRMNefkw36QFuIkWanAAQ2JkqBawSTM9agVNI2ycXL8Y9aDIhZAnAhC9oMqpuW3WzOONGQQmuFm7tMvleoKJnXZBAFNqityuXyI",
+    "pageAccessToken": "EAAGHq2ZAoJrQBAFmLtOeQcFMqG0bZBt6hpW1ZAh3FYkdfGAQLelVTbfl3UBIrPzRYsTQ3L81uR2pIPZC40dWBLR53cDS48GObWUHpu2Cp0xpeOPVaQH2ndq1ZCwkW2T4tdPli8PdpYKLnQFgwjLZASwLdo0XCeNkpFZBe0P68mwZCyYzV2YdvmKI",
     "validationToken": "pingokarimation",
     "serverURL": "https://beteotn.herokuapp.com/webhook"
 }
