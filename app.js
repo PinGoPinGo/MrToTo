@@ -269,7 +269,7 @@ function receivedMessage(event) {
           if (!error && response.statusCode === 200) {
               if(body['today']!=null){
                // sendTextMessage(senderID,JSON.stringify(body)+"  "+JSON.stringify(body['t']));
-                  sendGenericMessage(senderID);
+                  sendGenericMessage(senderID,body,city);
               }else{
                  sendTextMessage(senderID,"sorry !");   
               }
@@ -541,8 +541,8 @@ function sendButtonMessage(recipientId) {
  * Send a Structured Message (Generic Message type) using the Send API.
  *
  */
- 
-function sendGenericMessage(recipientId) {
+
+function sendGenericMessage(recipientId,body,city) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -553,31 +553,31 @@ function sendGenericMessage(recipientId) {
         payload: {
           template_type: "generic",
           elements: [{
-            title: "rift",
-            subtitle: "Next-generation virtual reality",
-            item_url: "https://www.oculus.com/en-us/rift/",               
-            image_url: SERVER_URL + "/assets/rift.png",
+            title: city,
+            subtitle: "today",
+            item_url: "https://www.meteo.tn",               
+            image_url: "http://www.donnery.fr/medias/sites/2/2015/02/meteo1.jpg",
             buttons: [{
               type: "web_url",
-              url: "https://www.oculus.com/en-us/rift/",
-              title: "Open Web URL"
+              url: "https://www.meteo.tn",
+              title: "Open Meteo.tn"
             }, {
               type: "postback",
-              title: "Call Postback",
+              title: "Feedback",
               payload: "Payload for first bubble",
             }],
           }, {
-            title: "touch",
-            subtitle: "Your Hands, Now in VR",
-            item_url: "https://www.oculus.com/en-us/touch/",               
-            image_url: SERVER_URL + "/assets/touch.png",
+            title: city,
+            subtitle: "Tomorrow",
+            item_url: "https://www.meteo.tn",               
+            image_url: "http://medias.rtci.tn/wp-content/uploads/2015/06/pluie-tunisie-rtci.jpg",
             buttons: [{
               type: "web_url",
-              url: "https://www.oculus.com/en-us/touch/",
-              title: "Open Web URL"
+              url: "https://www.meteo.tn",
+              title: "Open Meteo.tn"
             }, {
               type: "postback",
-              title: "Call Postback",
+              title: "Feedback",
               payload: "Payload for second bubble",
             }]
           }]
