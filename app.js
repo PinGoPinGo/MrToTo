@@ -257,7 +257,7 @@ function receivedMessage(event) {
     // the text we received.
 
     if(test ==0){
-      sendTextMessage(senderID,"Hi, How i can help you :D?");
+      sendTextMessage(senderID,"Hi, How I can help you :D?");
     }else{
       var city = messageText;
       var url = "https://meteotnapi.herokuapp.com/api?city="+city;
@@ -271,7 +271,7 @@ function receivedMessage(event) {
                // sendTextMessage(senderID,JSON.stringify(body)+"  "+JSON.stringify(body['t']));
                   sendGenericMessage(senderID,body,city);
               }else{
-                 sendTextMessage(senderID,"sorry !");   
+                 sendTextMessage(senderID,"sorry,"+messageText+" does not exist in database!");   
               }
           }
       });
@@ -561,8 +561,8 @@ function sendGenericMessage(recipientId,body,city) {
             image_url: "http://www.donnery.fr/medias/sites/2/2015/02/meteo1.jpg",
             buttons: [{
               type: "web_url",
-              url: "http://www.meteo.tn/htmlfr/accueil.php",
-              title: "Open Meteo.tn"
+              url: "https://karimation.herokuapp.com/index.html",
+              title: "Discover PinGo"
             }, {
               type: "postback",
               title: "Feedback",
@@ -575,8 +575,8 @@ function sendGenericMessage(recipientId,body,city) {
             image_url: "http://medias.rtci.tn/wp-content/uploads/2015/06/pluie-tunisie-rtci.jpg",
             buttons: [{
               type: "web_url",
-              url: "http://www.meteo.tn/htmlfr/accueil.php",
-              title: "Open Meteo.tn"
+              url: "https://karimation.herokuapp.com/index.html",
+              title: "Discover PinGo"
             }, {
               type: "postback",
               title: "Feedback",
