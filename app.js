@@ -554,8 +554,8 @@ function sendGenericMessage(recipientId,body,city) {
           template_type: "generic",
           elements: [{
             title: city,
-            subtitle: "Today: TempMin: "+JSON.stringify(body["today"]["tempMin"])+
-            " TempMax: "+JSON.stringify(body["today"]["tempMax"]);
+            subtitle: "Today: TempMin: "+(body["today"]["tempMin"])+
+            " TempMax: "+(body["today"]["tempMax"]);
             ,
             item_url: "https://www.meteo.tn",               
             image_url: "http://www.donnery.fr/medias/sites/2/2015/02/meteo1.jpg",
