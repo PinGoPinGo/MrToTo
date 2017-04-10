@@ -215,6 +215,7 @@ function receivedAuthentication(event) {
  * then we'll simply confirm that we've received the attachment.
  * 
  */
+int test = 0;
 function receivedMessage(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
@@ -254,8 +255,24 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
-      sendTextMessage(senderID,"I am Beteo :D .how i can help you ?");
-    
+
+    if(test ==0){
+      sendTextMessage(senderID,"Hi, How i can help you :D?");
+    }else{
+      var request = require("request")
+      var url = "https://meteotnapi.herokuapp.com/api?city=Sfax"
+      request({
+          url: url,
+          json: true
+      }, function (error, response, body) {
+
+          if (!error && response.statusCode === 200) {
+              sendTextMessage(senderID,body);
+              console.log(body) // Print the json response
+          }
+      });
+        
+    }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
