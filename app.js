@@ -268,7 +268,8 @@ function receivedMessage(event) {
 
           if (!error && response.statusCode === 200) {
               if(body['today']!=null){
-                sendTextMessage(senderID,JSON.stringify(body));
+               // sendTextMessage(senderID,JSON.stringify(body)+"  "+JSON.stringify(body['t']));
+                  sendGenericMessage(senderID);
               }else{
                  sendTextMessage(senderID,"sorry !");   
               }
@@ -540,6 +541,7 @@ function sendButtonMessage(recipientId) {
  * Send a Structured Message (Generic Message type) using the Send API.
  *
  */
+ 
 function sendGenericMessage(recipientId) {
   var messageData = {
     recipient: {
