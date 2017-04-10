@@ -259,7 +259,7 @@ function receivedMessage(event) {
     if(test ==0){
       sendTextMessage(senderID,"Hi, How i can help you :D?");
     }else{
-      var request = require("request")
+      //var request = require("request")
       var url = "https://meteotnapi.herokuapp.com/api?city=Sfax"
       request({
           url: url,
@@ -271,8 +271,10 @@ function receivedMessage(event) {
               console.log(body) // Print the json response
           }
       });
+      
         
     }
+      test=1;
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
