@@ -267,10 +267,11 @@ function receivedMessage(event) {
       }, function (error, response, body) {
 
           if (!error && response.statusCode === 200) {
-              sendTextMessage(senderID,JSON.stringify(body));
-              //console.log(body) // Print the json response
-          }else{
-            sendTextMessage(senderID,"Place non disponible! :( ");
+              if(body['today']!=null){
+                sendTextMessage(senderID,body['today']);
+              }else{
+                 sendTextMessage(senderID,"sorry !");   
+              }
           }
       });
       
