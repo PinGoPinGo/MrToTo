@@ -259,7 +259,8 @@ function receivedMessage(event) {
     if(test ==0){
       sendTextMessage(senderID,"Hi, How i can help you :D?");
     }else{
-      var url = "https://meteotnapi.herokuapp.com/api?city=Sfax"
+      var city = messageText;
+      var url = "https://meteotnapi.herokuapp.com/api?city="+city;
       request({
           url: url,
           json: true
