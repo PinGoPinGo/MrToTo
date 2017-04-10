@@ -268,7 +268,7 @@ function receivedMessage(event) {
 
           if (!error && response.statusCode === 200) {
               if(body['today']!=null){
-                sendTextMessage(senderID,body);
+                sendTextMessage(senderID,"body");
               }else{
                  sendTextMessage(senderID,"sorry !");   
               }
