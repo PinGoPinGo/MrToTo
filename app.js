@@ -554,7 +554,7 @@ function sendGenericMessage(recipientId,body,city) {
           template_type: "generic",
           elements: [{
             title: city,
-            subtitle: "today",
+            subtitle: "today"+JSON.stringify(body),
             item_url: "https://www.meteo.tn",               
             image_url: "http://www.donnery.fr/medias/sites/2/2015/02/meteo1.jpg",
             buttons: [{
@@ -568,7 +568,7 @@ function sendGenericMessage(recipientId,body,city) {
             }],
           }, {
             title: city,
-            subtitle: "Tomorrow",
+            subtitle: "Tomorrow"+JSON.stringify(body),
             item_url: "https://www.meteo.tn",               
             image_url: "http://medias.rtci.tn/wp-content/uploads/2015/06/pluie-tunisie-rtci.jpg",
             buttons: [{
