@@ -543,7 +543,8 @@ function sendButtonMessage(recipientId) {
  */
 
 function sendGenericMessage(recipientId,body,city) {
-  var todayInfo = "Today :D TempMin: "+body["today"]["tempMin"]+" TempMax: "+body["today"]["tempMax"];
+  var todayInfo = "Today   TempMin: "+body["today"]["tempMin"]+" TempMax: "+body["today"]["tempMax"]+" ForceVente: "+body["today"]["forceVente"]+" DirectionVente: "+body["today"]["directionVente"];
+  var tomorrowInfo = "Tomorrow   TempMin: "+body["tomorrow"]["tempMin"]+" TempMax: "+body["tomorrow"]["tempMax"]+" ForceVente: "+body["tomorrow"]["forceVente"]+" DirectionVente: "+body["tomorrow"]["directionVente"];
   var messageData = {
     recipient: {
       id: recipientId
@@ -556,11 +557,11 @@ function sendGenericMessage(recipientId,body,city) {
           elements: [{
             title: city,
             subtitle:todayInfo, 
-            item_url: "https://www.meteo.tn",               
+            item_url: "http://www.meteo.tn/htmlfr/accueil.php",               
             image_url: "http://www.donnery.fr/medias/sites/2/2015/02/meteo1.jpg",
             buttons: [{
               type: "web_url",
-              url: "https://www.meteo.tn",
+              url: "http://www.meteo.tn/htmlfr/accueil.php",
               title: "Open Meteo.tn"
             }, {
               type: "postback",
@@ -569,12 +570,12 @@ function sendGenericMessage(recipientId,body,city) {
             }],
           }, {
             title: city,
-            subtitle: "Tomorrow"+JSON.stringify(body),
-            item_url: "https://www.meteo.tn",               
+            subtitle: tomorrowInfo,
+            item_url: "http://www.meteo.tn/htmlfr/accueil.php",               
             image_url: "http://medias.rtci.tn/wp-content/uploads/2015/06/pluie-tunisie-rtci.jpg",
             buttons: [{
               type: "web_url",
-              url: "https://www.meteo.tn",
+              url: "http://www.meteo.tn/htmlfr/accueil.php",
               title: "Open Meteo.tn"
             }, {
               type: "postback",
