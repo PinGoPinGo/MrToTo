@@ -259,18 +259,52 @@ function receivedMessage(event) {
       case 'hello':
       case 'bonjour':
       case '3aslema':
-      sendTextMessage(senderID, ":D مرحبا. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود في خدمتكم");
+      sendTextMessage(senderID, "merhbe ena toto w hedhi 9a2emt el ikhtiyarat :D");
+
         break;
       case 'account linking':
         sendAccountLinking(senderID);
+        sendListOfChoices(senderID);
         break;
 
       default:
-        sendTextMessage("الطلب متاعك غير مفهوم. الرجاء العودة لقائمة الاختيارات", messageText);
+        sendTextMessage("mafhemtikch", messageText);
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
+}
+
+function sendListOfChoices(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "This is test text",
+          buttons:[{
+            type: "web_url",
+            url: "https://www.oculus.com/en-us/rift/",
+            title: "Open Web URL"
+          }, {
+            type: "postback",
+            title: "Trigger Postback",
+            payload: "DEVELOPER_DEFINED_PAYLOAD"
+          }, {
+            type: "phone_number",
+            title: "Call Phone Number",
+            payload: "+16505551234"
+          }]
+        }
+      }
+    }
+  };  
+
+  callSendAPI(messageData);
 }
 
 
