@@ -242,10 +242,15 @@ function receivedMessage(event) {
     return;
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
-    console.log("Quick reply for message %s with payload %s",
-      messageId, quickReplyPayload);
+    switch (quickReply.toLowerCase()) {
+      case 'service':
+        sendListOfServices(senderID);
+        break;
 
-    sendTextMessage(senderID, "Quick reply tapped");
+      default:
+        sendTextMessage("mafhemtikch", messageText);
+    }
+
     return;
   }
 
@@ -276,7 +281,7 @@ function sendListOfChoices(recipientId) {
       id: recipientId
     },
     message: {
-      text: "chniya ekhteyaratek?",
+      text: "chniya choix mte3ik ?",
       quick_replies: [
         {
           "content_type":"text",
@@ -321,7 +326,7 @@ function sendListOfServices(recipientId) {
       ]
     }
   };
-  
+
   callSendAPI(messageData);
 }
 
