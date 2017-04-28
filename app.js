@@ -262,8 +262,9 @@ function receivedMessage(event) {
       sendTextMessage(senderID, "merhbe :D");
       sendListOfChoices(senderID);
         break;
-      case 'boutique'
-      sendBoutique(senderID); break;  
+      case 'boutique':
+      sendBoutique(senderID); 
+      break;  
       default:
         sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
         sendListOfChoices(senderID);
