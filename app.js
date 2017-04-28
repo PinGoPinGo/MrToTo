@@ -265,7 +265,7 @@ function receivedMessage(event) {
       case 'boutique':
       sendBoutique(senderID); 
       break;  
-      case: 'img':
+      case 'img':
       sendImageMessage(senderID);
       break;
       default:
