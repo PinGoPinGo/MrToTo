@@ -260,9 +260,10 @@ function receivedMessage(event) {
       case 'bonjour':
       case '3aslema':
       sendTextMessage(senderID, "merhbe :D");
-      waitFunction(50000000);
       sendListOfChoices(senderID);
         break;
+      case 'boutique'
+      sendBoutique(senderID); break;  
       default:
         sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
         sendListOfChoices(senderID);
@@ -303,10 +304,31 @@ function sendListOfChoices(recipientId) {
   callSendAPI(messageData);
 }
 
-function waitFunction(delay){
-	for (var i = delay; i >= 0; i--) {
+function sendBoutique(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    "message": {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": {
+                    "element": {
+                        "title": "Your current location",
+                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+48.8955983+","+2.3857109+"&zoom=25&markers="+lat+","+long,
+                        "item_url": "http://maps.apple.com/maps?q="+48.8955983+","+2.3857109+"&z=16"
+                    }
+                }
+            }
+        }
     }
+  };
+
+  callSendAPI(messageData);
 }
+
 function sendListOfServices(recipientId) {
   var messageData = {
     recipient: {
