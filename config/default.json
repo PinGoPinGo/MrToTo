@@ -1,6 +1,6 @@
 {
-    "appSecret": "1f876885f9c1656acdd70b036445c6fd",
-    "pageAccessToken": "EAAGHq2ZAoJrQBAFmLtOeQcFMqG0bZBt6hpW1ZAh3FYkdfGAQLelVTbfl3UBIrPzRYsTQ3L81uR2pIPZC40dWBLR53cDS48GObWUHpu2Cp0xpeOPVaQH2ndq1ZCwkW2T4tdPli8PdpYKLnQFgwjLZASwLdo0XCeNkpFZBe0P68mwZCyYzV2YdvmKI",
+    "appSecret": "3775f0fbdab97a1f8c34fd588e44e695",
+    "pageAccessToken": "EAAY85mxW54ABAKO9okmvZCsxL878IK1XUWyRPENLlOMCG7UI3YpJ7ewOHtBMZCRQAJ4DXRMyXR6BeQ5RKoOyoVBYGeF3ZBiBOOF22pzN2zOql1NOMe8JwWKv0ZBixbg3v793y8LsY2kyXZBkParVq9BlKmdv6ZBrMhGFtcLhmQEwZDZD",
     "validationToken": "pingokarimation",
-    "serverURL": "https://beteotn.herokuapp.com/webhook"
+    "serverURL": "https://mrtoto.herokuapp.com/webhook"
 }

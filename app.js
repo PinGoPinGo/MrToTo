@@ -271,7 +271,7 @@ function receivedMessage(event) {
                // sendTextMessage(senderID,JSON.stringify(body)+"  "+JSON.stringify(body['t']));
                   sendGenericMessage(senderID,body,city);
               }else{
-                 sendTextMessage(senderID,"sorry,"+messageText+" does not exist in database!");   
+                 sendTextMessage(senderID,"Sorry,"+messageText+" does not exist in database!");   
               }
           }
       });
