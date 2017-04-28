@@ -323,7 +323,7 @@ function sendBoutique(recipientId) {
                 "elements": {
                     "element": {
                         "title": "hedha a9reb boutique lick",
-                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+lat+","+long+"&zoom=10&markers="+lat+","+long,
+                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+lat+","+long+"&zoom=5&markers="+lat+","+long,
                         "item_url": "http://maps.apple.com/maps?q="+lat+","+long+"&z=16"
                     }
                 }
