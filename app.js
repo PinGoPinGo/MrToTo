@@ -249,13 +249,11 @@ function receivedMessage(event) {
 
       default:
        sendTextMessage(senderID,"mafhemtikch 3awed akhtar list");
-       
-       setTimeout(sendListOfChoices(senderID),100);
+       setTimeout(sendListOfChoices(senderID),1000);
    }
 
     return;
   }
-
   if (messageText) {
     switch (messageText.toLowerCase()) {
       case 'hello':
@@ -263,11 +261,11 @@ function receivedMessage(event) {
       case '3aslema':
       sendTextMessage(senderID, "merhbe :D");
 
-      setTimeout(sendListOfChoices(senderID),100);
+      setTimeout(sendListOfChoices(senderID),1000);
         break;
       default:
         sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
-        setTimeout(sendListOfChoices(senderID), 100);
+        setTimeout(sendListOfChoices(senderID), 1000);
         
     }
   } else if (messageAttachments) {
