@@ -249,7 +249,7 @@ function receivedMessage(event) {
 
       default:
        sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
-       sendListOfChoices(senderID);
+       //sendListOfChoices(senderID);
    }
 
     return;
