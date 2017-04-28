@@ -250,11 +250,6 @@ function receivedMessage(event) {
   }
 
   if (messageText) {
-
-    // If we receive a text message, check to see if it matches any special
-    // keywords and send back the corresponding example. Otherwise, just echo
-    // the text we received.
-    
     switch (messageText.toLowerCase()) {
       case 'hello':
       case 'bonjour':
@@ -301,6 +296,10 @@ function sendListOfChoices(recipientId) {
       ]
     }
   };
+
+  callSendAPI(messageData);
+}
+
 function sendListOfServices(recipientId) {
   var messageData = {
     recipient: {
@@ -322,6 +321,10 @@ function sendListOfServices(recipientId) {
       ]
     }
   };
+  
+  callSendAPI(messageData);
+}
+
  
 function receivedDeliveryConfirmation(event) {
   var senderID = event.sender.id;
