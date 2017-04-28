@@ -260,7 +260,7 @@ function receivedMessage(event) {
       case 'bonjour':
       case '3aslema':
       sendTextMessage(senderID, "merhbe :D");
-      waitFunction(5000);
+      waitFunction(50000000);
       sendListOfChoices(senderID);
         break;
       default:
