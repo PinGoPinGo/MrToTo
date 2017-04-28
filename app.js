@@ -215,7 +215,6 @@ function receivedAuthentication(event) {
  * then we'll simply confirm that we've received the attachment.
  * 
  */
-var test = 0;
 function receivedMessage(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
@@ -255,30 +254,62 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
+    switch (messageText) {
+      case 'image':
+        sendImageMessage(senderID);
+        break;
 
-    if(test ==0){
-      sendTextMessage(senderID,"Hi, How I can help you :D?");
-    }else{
-      var city = messageText;
-      var url = "https://meteotnapi.herokuapp.com/api?city="+city;
-      request({
-          url: url,
-          json: true
-      }, function (error, response, body) {
+      case 'gif':
+        sendGifMessage(senderID);
+        break;
 
-          if (!error && response.statusCode === 200) {
-              if(body['today']!=null){
-               // sendTextMessage(senderID,JSON.stringify(body)+"  "+JSON.stringify(body['t']));
-                  sendGenericMessage(senderID,body,city);
-              }else{
-                 sendTextMessage(senderID,"Sorry,"+messageText+" does not exist in database!");   
-              }
-          }
-      });
-      
-        
+      case 'audio':
+        sendAudioMessage(senderID);
+        break;
+
+      case 'video':
+        sendVideoMessage(senderID);
+        break;
+
+      case 'file':
+        sendFileMessage(senderID);
+        break;
+
+      case 'button':
+        sendButtonMessage(senderID);
+        break;
+
+      case 'generic':
+        sendGenericMessage(senderID);
+        break;
+
+      case 'receipt':
+        sendReceiptMessage(senderID);
+        break;
+
+      case 'quick reply':
+        sendQuickReply(senderID);
+        break;        
+
+      case 'read receipt':
+        sendReadReceipt(senderID);
+        break;        
+
+      case 'typing on':
+        sendTypingOn(senderID);
+        break;        
+
+      case 'typing off':
+        sendTypingOff(senderID);
+        break;        
+
+      case 'account linking':
+        sendAccountLinking(senderID);
+        break;
+
+      default:
+        sendTextMessage(senderID, messageText);
     }
-      test=1;
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
@@ -541,10 +572,7 @@ function sendButtonMessage(recipientId) {
  * Send a Structured Message (Generic Message type) using the Send API.
  *
  */
-
-function sendGenericMessage(recipientId,body,city) {
-  var todayInfo = "Today   TempMin: "+body["today"]["tempMin"]+" TempMax: "+body["today"]["tempMax"]+" ForceVente: "+body["today"]["forceVente"]+" DirectionVente: "+body["today"]["directionVente"];
-  var tomorrowInfo = "Tomorrow   TempMin: "+body["tomorrow"]["tempMin"]+" TempMax: "+body["tomorrow"]["tempMax"]+" ForceVente: "+body["tomorrow"]["forceVente"]+" DirectionVente: "+body["tomorrow"]["directionVente"];
+function sendGenericMessage(recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -555,31 +583,31 @@ function sendGenericMessage(recipientId,body,city) {
         payload: {
           template_type: "generic",
           elements: [{
-            title: city,
-            subtitle:todayInfo, 
-            item_url: "http://www.meteo.tn/htmlfr/accueil.php",               
-            image_url: "http://www.donnery.fr/medias/sites/2/2015/02/meteo1.jpg",
+            title: "rift",
+            subtitle: "Next-generation virtual reality",
+            item_url: "https://www.oculus.com/en-us/rift/",               
+            image_url: SERVER_URL + "/assets/rift.png",
             buttons: [{
               type: "web_url",
-              url: "https://karimation.herokuapp.com/index.html",
-              title: "Discover PinGo"
+              url: "https://www.oculus.com/en-us/rift/",
+              title: "Open Web URL"
             }, {
               type: "postback",
-              title: "Feedback",
+              title: "Call Postback",
               payload: "Payload for first bubble",
             }],
           }, {
-            title: city,
-            subtitle: tomorrowInfo,
-            item_url: "http://www.meteo.tn/htmlfr/accueil.php",               
-            image_url: "http://medias.rtci.tn/wp-content/uploads/2015/06/pluie-tunisie-rtci.jpg",
+            title: "touch",
+            subtitle: "Your Hands, Now in VR",
+            item_url: "https://www.oculus.com/en-us/touch/",               
+            image_url: SERVER_URL + "/assets/touch.png",
             buttons: [{
               type: "web_url",
-              url: "https://karimation.herokuapp.com/index.html",
-              title: "Discover PinGo"
+              url: "https://www.oculus.com/en-us/touch/",
+              title: "Open Web URL"
             }, {
               type: "postback",
-              title: "Feedback",
+              title: "Call Postback",
               payload: "Payload for second bubble",
             }]
           }]
