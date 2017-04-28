@@ -322,8 +322,8 @@ function sendBoutique(recipientId) {
                 "template_type": "generic",
                 "elements": {
                     "element": {
-                        "title": "Your current location",
-                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+lat+","+long+"&zoom=25&markers="+lat+","+long,
+                        "title": "hedha a9reb boutique lick",
+                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+lat+","+long+"&zoom=17&markers="+lat+","+long,
                         "item_url": "http://maps.apple.com/maps?q="+lat+","+long+"&z=16"
                     }
                 }
@@ -446,10 +446,7 @@ function receivedAccountLink(event) {
  *
  */
 function sendImageMessage(recipientId) {
-var lat  = 36.8485287;
-var long = 10.1871741;
- 
-  var messageData = {
+   var messageData = {
     recipient: {
       id: recipientId
     },
@@ -457,10 +454,7 @@ var long = 10.1871741;
       attachment: {
         type: "image",
         payload: {
-            url: SERVER_URL + "/assets/rift.png",
-            title: "Your current location",
-            image_url: "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+lat+","+long+"&zoom=25&markers="+lat+","+long,
-            item_url: "http://maps.apple.com/maps?q="+lat+","+long+"&z=16"
+            url: SERVER_URL + "/assets/rift.png"
         }
       }
     }
