@@ -262,7 +262,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, "merhbe :D");
       sendListOfChoices(senderID);
         break;
-      case 'boutique':
+      case 'boutiques':
       sendBoutique(senderID); 
       break;  
       default:
