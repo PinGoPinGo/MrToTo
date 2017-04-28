@@ -242,14 +242,15 @@ function receivedMessage(event) {
     return;
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
-    switch (quickReply.toLowerCase()) {
+    switch (messageText.toLowerCase()) {
       case 'service':
         sendListOfServices(senderID);
         break;
 
       default:
-        sendTextMessage("mafhemtikch", messageText);
-    }
+       sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
+       sendListOfChoices(senderID);
+   }
 
     return;
   }
@@ -259,16 +260,12 @@ function receivedMessage(event) {
       case 'hello':
       case 'bonjour':
       case '3aslema':
-      sendTextMessage(senderID, "merhbe ena toto w hedhi 9a2emt el ikhtiyarat :D");
+      sendTextMessage(senderID, "merhbe :D");
       sendListOfChoices(senderID);
-
         break;
-      case 'service':
-        sendListOfServices(senderID);
-        break;
-
       default:
-        sendTextMessage("mafhemtikch", messageText);
+        sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
+        sendListOfChoices(senderID);
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
