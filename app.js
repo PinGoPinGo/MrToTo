@@ -249,7 +249,7 @@ function receivedMessage(event) {
 
       default:
        sendTextMessage(senderID,"mafhemtikch 3awed akhtar list");
-       setTimeout(sendListOfChoices(senderID),1000);
+       sendListOfChoices(senderID);
    }
 
     return;
@@ -260,12 +260,12 @@ function receivedMessage(event) {
       case 'bonjour':
       case '3aslema':
       sendTextMessage(senderID, "merhbe :D");
-
-      setTimeout(sendListOfChoices(senderID),1000);
+      waitFunction(5000);
+      sendListOfChoices(senderID);
         break;
       default:
         sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
-        setTimeout(sendListOfChoices(senderID), 1000);
+        sendListOfChoices(senderID);
         
     }
   } else if (messageAttachments) {
@@ -303,6 +303,10 @@ function sendListOfChoices(recipientId) {
   callSendAPI(messageData);
 }
 
+function waitFunction(delay){
+	for (var i = delay; i >= 0; i--) {
+    }
+}
 function sendListOfServices(recipientId) {
   var messageData = {
     recipient: {
