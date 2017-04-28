@@ -306,6 +306,8 @@ function sendListOfChoices(recipientId) {
 }
 
 function sendBoutique(recipientId) {
+  lat  = 36.8485287;
+  long = 10.1871741;
   var messageData = {
     recipient: {
       id: recipientId
@@ -318,8 +320,8 @@ function sendBoutique(recipientId) {
                 "elements": {
                     "element": {
                         "title": "Your current location",
-                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+48.8955983+","+2.3857109+"&zoom=25&markers="+lat+","+long,
-                        "item_url": "http://maps.apple.com/maps?q="+48.8955983+","+2.3857109+"&z=16"
+                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+lat+","+long+"&zoom=25&markers="+lat+","+long,
+                        "item_url": "http://maps.apple.com/maps?q="+lat+","+long+"&z=16"
                     }
                 }
             }
