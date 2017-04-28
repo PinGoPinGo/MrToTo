@@ -262,9 +262,12 @@ function receivedMessage(event) {
       sendTextMessage(senderID, "merhbe :D");
       sendListOfChoices(senderID);
         break;
-      case 'boutiques':
+      case 'boutique':
       sendBoutique(senderID); 
       break;  
+      case: 'img':
+      sendImageMessage(senderID);
+      break;
       default:
         sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
         sendListOfChoices(senderID);
@@ -443,8 +446,8 @@ function receivedAccountLink(event) {
  *
  */
 function sendImageMessage(recipientId) {
-var 	 lat  = 36.8485287;
- var long = 10.1871741;
+var lat  = 36.8485287;
+var long = 10.1871741;
  
   var messageData = {
     recipient: {
@@ -454,7 +457,7 @@ var 	 lat  = 36.8485287;
       attachment: {
         type: "image",
         payload: {
-          url: SERVER_URL + "/assets/rift.png"
+            url: SERVER_URL + "/assets/rift.png",
             title: "Your current location",
             image_url: "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+lat+","+long+"&zoom=25&markers="+lat+","+long,
             item_url: "http://maps.apple.com/maps?q="+lat+","+long+"&z=16"
