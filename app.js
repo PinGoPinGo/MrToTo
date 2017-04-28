@@ -259,7 +259,7 @@ function receivedMessage(event) {
       case 'hello':
       case 'bonjour':
       case '3aslema':
-      sendTextMessage(senderID, " عالسلامة. أنا توتو. أنا مرشد الحرفاء.24/24 موجود بش نعاونك");
+      sendTextMessage(senderID, " مرحبا                              أنا توتو. أنا مرشد الحرفاء.24/24 موجود بش نعاونك");
         break;
       case 'account linking':
         sendAccountLinking(senderID);
