@@ -248,7 +248,9 @@ function receivedMessage(event) {
         break;
 
       default:
-       executeAsynchronously(sendTextMessage(senderID,"mafhemtikch 3awed akhtar list"),sendListOfChoices(senderID),10);
+       sendTextMessage(senderID,"mafhemtikch 3awed akhtar list");
+       
+       setTimeout(sendListOfChoices(senderID),100);
    }
 
     return;
@@ -259,11 +261,14 @@ function receivedMessage(event) {
       case 'hello':
       case 'bonjour':
       case '3aslema':
+      sendTextMessage(senderID, "merhbe :D");
 
-      executeAsynchronously(sendTextMessage(senderID, "merhbe :D"),sendListOfChoices(senderID),10);
+      setTimeout(sendListOfChoices(senderID),100);
         break;
       default:
-        executeAsynchronously(sendTextMessage("mafhemtikch 3awed akhtar list", messageText),sendListOfChoices(senderID),10);
+        sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
+        setTimeout(sendListOfChoices(senderID), 100);
+        
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
@@ -323,12 +328,6 @@ function sendListOfServices(recipientId) {
   };
 
   callSendAPI(messageData);
-}
-
-function executeAsynchronously(functions, timeout) {
-  for(var i = 0; i < functions.length; i++) {
-    setTimeout(functions[i], timeout);
-  }
 }
  
 function receivedDeliveryConfirmation(event) {
