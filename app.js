@@ -260,11 +260,11 @@ function receivedMessage(event) {
       case 'bonjour':
       case '3aslema':
       sendTextMessage(senderID, "merhbe ena toto w hedhi 9a2emt el ikhtiyarat :D");
+      sendListOfChoices(senderID);
 
         break;
       case 'account linking':
         sendAccountLinking(senderID);
-        sendListOfChoices(senderID);
         break;
 
       default:
