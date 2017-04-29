@@ -22,32 +22,6 @@ const
   https = require('https'),  
   request = require('request');
   
-  var g = require('ger')
-
-  // ger memory
-  var esm = new g.MemESM()
-  var ger = new g.GER(esm);
-ger.initialize_namespace('voitures')
-  // users array
-  var users = [];
-
-  // counter for the next user to send to him recommendations
-  var counter = 0
-
-  /*
-  //repeat the sending recommedation
-  setInterval(function() {
-    //
-    var index = counter % users.length
-    counter++
-    
-    var userId = users[index]
-
-    sendARecommendationToAuser(userId,"voitures")
-  }, 60 * 1000
-  );
-*/
-
 var app = express();
 app.set('port', process.env.PORT);
 app.set('view engine', 'ejs');
@@ -369,13 +343,6 @@ function receivedMessage(event) {
             
             response = body;
             
-            ger.events([{
-             namespace: m[5],
-             person: senderID,
-             action: 'likes',
-             thing: JSON.parse(response)["articles"][0],
-             expires_at: '2020-06-06'
-           }])
            
           } else {
             console.log("Got an error: ", error, ", status code: ", response.statusCode)
