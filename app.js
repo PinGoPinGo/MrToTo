@@ -269,18 +269,16 @@ function receivedMessage(event) {
       case 'bonjour':
       case '3aslema':
       sendTextMessage(senderID, "عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتك  😇");
-      sendListOfChoices(senderID);
       break;
-      case 'boutique':
-      sendBoutique(senderID); 
+      case 'merci':
+      case 'buy':
+      sendTextMessage(senderID, "مرحبا بيك في كل واقت ☺");
       break;  
-      case 'img':
-      sendImageMessage(senderID);
+      case 'help':
+      sendListOfChoices(senderID);      
       break;
       default:
-        sendTextMessage("الاختيار متاعك مش واضح 😭", messageText);
-        sendListOfChoices(senderID);
-        
+        sendTextMessage("الاختيار متاعك مش واضح 😭 send me help", messageText);
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
