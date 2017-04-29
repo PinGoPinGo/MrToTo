@@ -373,11 +373,6 @@ function sendInternetOption(recipientId) {
             type: "web_url",
             url: "https://www.oculus.com/en-us/rift/",
             title: "Option 1Go valable 30jours à 5dt"
-          },
-          {
-            type: "web_url",
-            url: "https://www.oculus.com/en-us/rift/",
-            title: "Option 250 Mo valable 1jour à 1dt"
           }
           ]
         }
