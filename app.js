@@ -242,7 +242,7 @@ function receivedMessage(event) {
     return;
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
-    switch (messageText) {
+    switch (messageText.toLowerCase()) {
       case 'service':
         sendListOfServices(senderID);
         break;
@@ -257,7 +257,7 @@ function receivedMessage(event) {
         break;
 
       default:
-       sendTextMessage(senderID,"sssالاختيار متاعك مش واضح 😭");
+       sendTextMessage(senderID,"الاختيار متاعك مش واضح 😭");
        sendListOfChoices(senderID);
    }
 
