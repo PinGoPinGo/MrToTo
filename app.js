@@ -243,7 +243,16 @@ function receivedMessage(event) {
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
     switch (messageText) {
-      case 'اقرب بوتيك':
+      case 'service':
+        sendListOfServices(senderID);
+        break;
+      case 'boutique':
+        sendBoutique(senderID);
+        break;
+      case 'guide':
+        sendBoutique(senderID);
+        break;
+      case 'internet':
         sendBoutique(senderID);
         break;
 
@@ -259,7 +268,7 @@ function receivedMessage(event) {
       case 'hello':
       case 'bonjour':
       case '3aslema':
-      sendTextMessage(senderID, " 😇 عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتكم ");
+      sendTextMessage(senderID, "عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتك  😇");
       sendListOfChoices(senderID);
       break;
       case 'boutique':
@@ -289,22 +298,22 @@ function sendListOfChoices(recipientId) {
         {
           "content_type":"text",
           "title":"الخدمات الخديدة 😁",
-          "payload":"الخدمات الخديدة"
+          "payload":"service"
         },
 	{
           "content_type":"text",
           "title":"عروض الانترنات 📝",
-          "payload":"عروض الانترنات"
+          "payload":"internet"
         },
 	{
           "content_type":"text",
           "title":"اقرب بوتيك 🔭",
-          "payload":"اقرب بوتيك"
+          "payload":"boutique"
         },
         {
           "content_type":"text",
           "title":" مرشد الحرفاء 👧👦",
-          "payload":"مرشد الحرفاء"
+          "payload":"guide"
         }
         
       ]
@@ -341,30 +350,6 @@ function sendBoutique(recipientId) {
   callSendAPI(messageData);
 }
 
-function sendListOfServices(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: "chniya ekhteyaratek?",
-      quick_replies: [
-        {
-          "content_type":"text",
-          "title":"Comedy",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
-        },
-        {
-          "content_type":"text",
-          "title":"Drama",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
-        }
-      ]
-    }
-  };
-
-  callSendAPI(messageData);
-}
  
 function receivedDeliveryConfirmation(event) {
   var senderID = event.sender.id;
@@ -615,7 +600,7 @@ function sendButtonMessage(recipientId) {
  * Send a Structured Message (Generic Message type) using the Send API.
  *
  */
-function sendGenericMessage(recipientId) {
+function sendListOfServices(recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -626,34 +611,39 @@ function sendGenericMessage(recipientId) {
         payload: {
           template_type: "generic",
           elements: [{
-            title: "rift",
-            subtitle: "Next-generation virtual reality",
-            item_url: "https://www.oculus.com/en-us/rift/",               
-            image_url: SERVER_URL + "/assets/rift.png",
+            title: "Cart@net",
+            subtitle: "la nouvelle carte de recharge de l’internet mobile !",
+            item_url: "http://www.orange.tn/cartanet",               
+            image_url: "http://www.orange.tn/sites/default/files/image-detail/services-vignettes-larges-cartnet.png",
             buttons: [{
               type: "web_url",
-              url: "https://www.oculus.com/en-us/rift/",
-              title: "Open Web URL"
-            }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for first bubble",
+              url: "http://www.orange.tn/cartanet",
+              title: "Acheter"
             }],
-          }, {
-            title: "touch",
-            subtitle: "Your Hands, Now in VR",
-            item_url: "https://www.oculus.com/en-us/touch/",               
-            image_url: SERVER_URL + "/assets/touch.png",
+          }, 
+          {
+            title: "Ehdi option",
+            subtitle: "Avec le nouveau service « Ehdi option », faites plaisir à vos proches",
+            item_url: "http://www.orange.tn/ehdi-option",               
+            image_url: "http://www.orange.tn/sites/default/files/image-detail/services-vignettes-gift.png",
             buttons: [{
               type: "web_url",
-              url: "https://www.oculus.com/en-us/touch/",
-              title: "Open Web URL"
-            }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for second bubble",
-            }]
-          }]
+              url: "http://www.orange.tn/ehdi-option",
+              title: "Acheter"
+            }],
+          },
+          {
+            title: "Portabilité",
+            subtitle: "Rejoignez Orange dès aujourd’hui !",
+            item_url: "http://www.orange.tn/portabilite",               
+            image_url: "http://www.orange.tn/sites/default/files/image-detail/portabilite.jpg",
+            buttons: [{
+              type: "web_url",
+              url: "http://www.orange.tn/portabilite",
+              title: "Acheter"
+            }],
+          }
+          ]
         }
       }
     }
