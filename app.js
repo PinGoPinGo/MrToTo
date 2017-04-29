@@ -242,13 +242,13 @@ function receivedMessage(event) {
     return;
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
-    switch (messageText.toLowerCase()) {
-      case 'service':
-        sendListOfServices(senderID);
+    switch (messageText) {
+      case 'اقرب بوتيك':
+        sendBoutique(senderID);
         break;
 
       default:
-       sendTextMessage(senderID,"mafhemtikch 3awed akhtar list");
+       sendTextMessage(senderID,"الاختيار متاعك مش واضح 😭");
        sendListOfChoices(senderID);
    }
 
@@ -259,7 +259,7 @@ function receivedMessage(event) {
       case 'hello':
       case 'bonjour':
       case '3aslema':
-      sendTextMessage(senderID, ":D عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتكم");
+      sendTextMessage(senderID, " 😇 عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتكم ");
       sendListOfChoices(senderID);
         break;
       case 'boutique':
@@ -303,8 +303,8 @@ function sendListOfChoices(recipientId) {
         },
         {
           "content_type":"text",
-          "title":"الاتصال بمرشد الحرفاء 👧👦",
-          "payload":"الاتصال بمرشد الحرفاء"
+          "title":" مرشد الحرفاء 👧👦",
+          "payload":"مرشد الحرفاء"
         }
         
       ]
