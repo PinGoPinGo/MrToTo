@@ -246,14 +246,14 @@ function receivedMessage(event) {
       case 'الخدمات الخديدة':
         sendListOfServices(senderID);
         break;
-      case 'boutique':
-        sendBoutique(senderID);
+      case 'اقرب بوتيك 🔭':
+        sendBoutique(senderID); //boutiquz
         break;
-      case 'guide':
-        sendBoutique(senderID);
+      case 'مرشد الحرفاء 👧👦': //guide
+        sendTextMessage(senderID, "غير متاح حاليا");
         break;
-      case 'عروض الانترنات 📝':
-        sendBoutique(senderID);
+      case 'عروض الانترنات 📝': //internet
+        sendInternetOption(senderID);
         break;
 
       default:
@@ -312,7 +312,7 @@ function sendListOfChoices(recipientId) {
         },
         {
           "content_type":"text",
-          "title":" مرشد الحرفاء 👧👦",
+          "title":"مرشد الحرفاء 👧👦",
           "payload":"guide"
         }
         
@@ -337,7 +337,7 @@ function sendBoutique(recipientId) {
                 "template_type": "generic",
                 "elements": {
                     "element": {
-                        "title": "hedha a9reb boutique lick",
+                        "title": "هدا اقرب بوتيك",
                         "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+lat+","+long+"&zoom=18&markers="+lat+","+long,
                         "item_url": "http://maps.apple.com/maps?q="+lat+","+long+"&z=16"
                     }
@@ -346,6 +346,50 @@ function sendBoutique(recipientId) {
         }
     }
   };
+
+  callSendAPI(messageData);
+}
+
+function sendInternetOption(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "قائمة الاختيارات",
+          buttons:[{
+            type: "web_url",
+            url: "https://www.oculus.com/en-us/rift/",
+            title: "Option 1Go valable 30jours à 5dt"
+          },
+          {
+            type: "web_url",
+            url: "https://www.oculus.com/en-us/rift/",
+            title: "Option Facebook 225 Mo valable 7jours à 0,9dt"
+          },
+          {
+            type: "web_url",
+            url: "https://www.oculus.com/en-us/rift/",
+            title: "Option 1Go valable 30jours à 5dt"
+          },
+          {
+            type: "web_url",
+            url: "https://www.oculus.com/en-us/rift/",
+            title: "Option 250 Mo valable 1jour à 1dt"
+          },
+          {
+            type: "web_url",
+            url: "https://www.oculus.com/en-us/rift/",
+            title: "Option 125 Mo valable 1jour à 0,5dt"
+          }]
+        }
+      }
+    }
+  };  
 
   callSendAPI(messageData);
 }
