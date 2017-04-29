@@ -10,10 +10,6 @@
 /* jshint node: true, devel: true */
 'use strict';
 
-
-var http = require('http');
-
-
 const 
   bodyParser = require('body-parser'),
   config = require('config'),
@@ -21,35 +17,9 @@ const
   express = require('express'),
   https = require('https'),  
   request = require('request');
-  
-  var g = require('ger')
-
-  // ger memory
-  var esm = new g.MemESM()
-  var ger = new g.GER(esm);
-ger.initialize_namespace('voitures')
-  // users array
-  var users = [];
-
-  // counter for the next user to send to him recommendations
-  var counter = 0
-
-  /*
-  //repeat the sending recommedation
-  setInterval(function() {
-    //
-    var index = counter % users.length
-    counter++
-    
-    var userId = users[index]
-
-    sendARecommendationToAuser(userId,"voitures")
-  }, 60 * 1000
-  );
-*/
 
 var app = express();
-app.set('port', process.env.PORT);
+app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
@@ -250,10 +220,6 @@ function receivedMessage(event) {
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
   var message = event.message;
-  
-  // adding the user
-  addUser(senderID);
-
 
   console.log("Received message for user %d and page %d at %d with message:", 
     senderID, recipientID, timeOfMessage);
@@ -276,131 +242,124 @@ function receivedMessage(event) {
     return;
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
-    console.log("Quick reply for message %s with payload %s",
-      messageId, quickReplyPayload);
+    switch (messageText.toLowerCase()) {
+      case 'service':
+        sendListOfServices(senderID);
+        break;
 
-    sendTextMessage(senderID, "Quick reply tapped");
+      default:
+       sendTextMessage(senderID,"mafhemtikch 3awed akhtar list");
+       sendListOfChoices(senderID);
+   }
+
     return;
   }
-
   if (messageText) {
-
-    // If we receive a text message, check to see if it matches any special
-    // keywords and send back the corresponding example. Otherwise, just echo
-    // the text we received.
-    switch (messageText) {
-      case 'image':
-        sendImageMessage(senderID);
+    switch (messageText.toLowerCase()) {
+      case 'hello':
+      case 'bonjour':
+      case '3aslema':
+      sendTextMessage(senderID, "merhbe :D");
+      sendListOfChoices(senderID);
         break;
-
-      case 'gif':
-        sendGifMessage(senderID);
-        break;
-
-      case 'audio':
-        sendAudioMessage(senderID);
-        break;
-
-      case 'video':
-        sendVideoMessage(senderID);
-        break;
-
-      case 'file':
-        sendFileMessage(senderID);
-        break;
-
-      case 'button':
-        sendButtonMessage(senderID);
-        break;
-
-      case 'generic':
-        sendGenericMessage(senderID);
-        break;
-
-      case 'receipt':
-        sendReceiptMessage(senderID);
-        break;
-
-      case 'quick reply':
-        sendQuickReply(senderID);
-        break;        
-
-      case 'read receipt':
-        sendReadReceipt(senderID);
-        break;        
-
-      case 'typing on':
-        sendTypingOn(senderID);
-        break;        
-
-      case 'typing off':
-        sendTypingOff(senderID);
-        break;        
-
-      case 'account linking':
-        sendAccountLinking(senderID);
-        break;
-
-      default:{
-        //sendTextMessage(senderID, messageText);
-        var url = 'http://tayaracrawler-makergeek.c9users.io/find?query='+messageText;
+      case 'boutique':
+      sendBoutique(senderID); 
+      break;  
+      case 'img':
+      sendImageMessage(senderID);
+      break;
+      default:
+        sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
+        sendListOfChoices(senderID);
         
-        const request = require('request');
-           //  ,url = 'http://graph.facebook.com/517267866/?fields=picture'
-        var response;
-        request(url, (error, response, body)=> {
-          if (!error && response.statusCode === 200) {
-            const fbResponse = JSON.parse(body)
-            console.log("Got a response: ", body)
-            response = JSON.parse(body);
-            console.log("XXX"+JSON.stringify(response["articles"][0])+"XXX");
-
-            
-            var m = (response["articles"][0]["link"]).split("/");
-            
-            console.log("category==="+m[5]);
-
-            sendTextMessage(senderID,  "we found some products in the category "+ JSON.stringify(m[5]));
-
-            sendGenericMessageResult(senderID, response["articles"][0],response["articles"][1],response["articles"][2]);
-           // sendTextMessage(senderID,  JSON.stringify(response["articles"][0]));
-            //sendTextMessage(senderID,  JSON.stringify(response["articles"][1]));
-            //sendTextMessage(senderID,  JSON.stringify(response["articles"][2]));
-            
-            response = body;
-            
-            ger.events([{
-             namespace: m[5],
-             person: senderID,
-             action: 'likes',
-             thing: JSON.parse(response)["articles"][0],
-             expires_at: '2020-06-06'
-           }])
-           
-          } else {
-            console.log("Got an error: ", error, ", status code: ", response.statusCode)
-          }
-        })
-        
-        
-
-        console.log("before");
-        sendTextMessage(senderID, "ok, just a minute; i\'m looking for some awesome deals for you ;) ");
-        console.log("after");}
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
 }
 
+function sendListOfChoices(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: "chniya choix mte3ik ?",
+      quick_replies: [
+        {
+          "content_type":"text",
+          "title":"service",
+          "payload":"service"
+        },
+        {
+          "content_type":"text",
+          "title":"Comedy",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+        },
+        {
+          "content_type":"text",
+          "title":"Drama",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+        }
+      ]
+    }
+  };
 
-/*
- * Delivery Confirmation Event
- *
- * This event is sent to confirm the delivery of a message. Read more about 
- * these fields at https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-delivered
- *
- */
+  callSendAPI(messageData);
+}
+
+function sendBoutique(recipientId) {
+  var lat  = 36.8485287;
+  var long = 10.1871741;
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    "message": {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": {
+                    "element": {
+                        "title": "hedha a9reb boutique lick",
+                        "image_url": "https://maps.googleapis.com/maps/api/staticmap?size=764x400&center="+lat+","+long+"&zoom=18&markers="+lat+","+long,
+                        "item_url": "http://maps.apple.com/maps?q="+lat+","+long+"&z=16"
+                    }
+                }
+            }
+        }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendListOfServices(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: "chniya ekhteyaratek?",
+      quick_replies: [
+        {
+          "content_type":"text",
+          "title":"Comedy",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+        },
+        {
+          "content_type":"text",
+          "title":"Drama",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+        }
+      ]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+ 
 function receivedDeliveryConfirmation(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
@@ -487,7 +446,7 @@ function receivedAccountLink(event) {
  *
  */
 function sendImageMessage(recipientId) {
-  var messageData = {
+   var messageData = {
     recipient: {
       id: recipientId
     },
@@ -495,7 +454,7 @@ function sendImageMessage(recipientId) {
       attachment: {
         type: "image",
         payload: {
-          url: SERVER_URL + "/assets/rift.png"
+            url: SERVER_URL + "/assets/rift.png"
         }
       }
     }
@@ -905,65 +864,6 @@ function callSendAPI(messageData) {
   });  
 }
 
-
-
-
-
-
-
-
-
-
-
-
-//add a user
-function addUser(userId){
-  var userAleradyExist = false;
-  for (var i = 0; i < users.length; i++) {
-    if( users[i]== userId) {
-      userAleradyExist = true;
-    }
-  }
-  if(!userAleradyExist){
-    users[users.length]=userId;
-  }
-}
-
-/*
-  //send a user a recommendation
-  function sendARecommendationToAuser(userId, nameSpace) {
-    
-    ger.recommendations_for_person(nameSpace, userId , {actions: {likes: 1}})
-    .then( function(recommendations) {
-  console.log("\nRecommendations For 'alice'")
-  console.log(JSON.stringify(recommendations,null,2))
-  if(recommendations["recommendations"][0]!=undefined)
-      //sendTextMessage(userId, JSON.stringify(recommendations["recommendations"][0]["thing"],null,2) );
-      sendGenericMessageRecommendation(userId, recommendations["recommendations"][0]["thing"]);
-      //var list = JSON.parse('{ "recipient":{ "id":'+userId+' }, "message": { "attachment": { "type": "template", "payload": { "template_type": "list", "top_element_style": "compact", "elements": [ { "title": "Classic White T-Shirt", "image_url": "https://peterssendreceiveapp.ngrok.io/img/white-t-shirt.png", "subtitle": "100% Cotton, 200% Comfortable", "default_action": { "type": "web_url", "url": "https://peterssendreceiveapp.ngrok.io/view?item=100", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://peterssendreceiveapp.ngrok.io/" }, "buttons": [ { "title": "Buy", "type": "web_url", "url": "https://peterssendreceiveapp.ngrok.io/shop?item=100", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://peterssendreceiveapp.ngrok.io/" } ] }, { "title": "Classic Blue T-Shirt", "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png", "subtitle": "100% Cotton, 200% Comfortable", "default_action": { "type": "web_url", "url": "https://peterssendreceiveapp.ngrok.io/view?item=101", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://peterssendreceiveapp.ngrok.io/" }, "buttons": [ { "title": "Buy", "type": "web_url", "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://peterssendreceiveapp.ngrok.io/" } ] }, { "title": "Classic Black T-Shirt", "image_url": "https://peterssendreceiveapp.ngrok.io/img/black-t-shirt.png", "subtitle": "100% Cotton, 200% Comfortable", "default_action": { "type": "web_url", "url": "https://peterssendreceiveapp.ngrok.io/view?item=102", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://peterssendreceiveapp.ngrok.io/" }, "buttons": [ { "title": "Buy", "type": "web_url", "url": "https://peterssendreceiveapp.ngrok.io/shop?item=102", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://peterssendreceiveapp.ngrok.io/" } ] }, { "title": "Classic Gray T-Shirt", "image_url": "https://peterssendreceiveapp.ngrok.io/img/gray-t-shirt.png", "subtitle": "100% Cotton, 200% Comfortable", "default_action": { "type": "web_url", "url": "https://peterssendreceiveapp.ngrok.io/view?item=103", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://peterssendreceiveapp.ngrok.io/" }, "buttons": [ { "title": "Buy", "type": "web_url", "url": "https://peterssendreceiveapp.ngrok.io/shop?item=103", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://peterssendreceiveapp.ngrok.io/" } ] } ], "buttons": [ { "title": "View More", "type": "postback", "payload": "payload" } ] } } } }');
-      
-    
-      //callSendAPI(list);
-      //sendTextMessage(userId,JSON.stringify(list) );
-      sendGenericMessageResult(userId, a, b, c);
-
-})
-
-
-    //sendTextMessage(userId, "goooood" );
-    
-  }
-
-*/
-
-
-
-
-
-
-
-
-
 // Start server
 // Webhooks must be available via SSL with a certificate signed by a valid 
 // certificate authority.
@@ -973,82 +873,3 @@ app.listen(app.get('port'), function() {
 
 module.exports = app;
 
-
-           function sendGenericMessageResult(recipientId, a, b, c) {
-        var messageData = {
-          recipient: {
-            id: recipientId
-          },
-          message: {
-            attachment: {
-              type: "template",
-              payload: {
-                template_type: "generic",
-                elements: [{
-	          title: a["title"],
-	          subtitle: a["price"],
-	          item_url: a["link"],               
-	          image_url: a["image"],
-	          buttons: [{
-	            type: "web_url",
-	            url: a["link"],
-	            title: "Buy"
-	          }],
-	        },{
-	          title: b["title"],
-	          subtitle: b["price"],
-	          item_url: b["link"],               
-	          image_url: b["image"],
-	          buttons: [{
-	            type: "web_url",
-	            url: b["link"],
-	            title: "Buy"
-	          }],
-	        }, {
-	          title: c["title"],
-	          subtitle: c["price"],
-	          item_url: c["link"],               
-	          image_url: c["image"],
-	          buttons: [{
-	            type: "web_url",
-	            url: c["link"],
-	            title: "Buy"
-	          }],
-                }]
-              }
-            }
-          }
-        };  
-      
-        callSendAPI(messageData);
-    }
-    
-    
-               function sendGenericMessageRecommendation(recipientId, a) {
-        var messageData = {
-          recipient: {
-            id: recipientId
-          },
-          message: {
-            attachment: {
-              type: "template",
-              payload: {
-                template_type: "generic",
-                elements: [{
-	          title: a["title"],
-	          subtitle: a["price"],
-	          item_url: a["link"],               
-	          image_url: a["image"],
-	          buttons: [{
-	            type: "web_url",
-	            url: a["link"],
-	            title: "Buy"
-	          }]
-	        }]
-              }
-            }
-          }
-        };  
-      
-        callSendAPI(messageData);
-    }
