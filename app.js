@@ -257,7 +257,7 @@ function receivedMessage(event) {
         break;
 
       default:
-       sendTextMessage(senderID,"الاختيار متاعك مش واضح 😭");
+       sendTextMessage(senderID,"sssالاختيار متاعك مش واضح 😭");
        sendListOfChoices(senderID);
    }
 
