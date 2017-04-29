@@ -259,7 +259,7 @@ function receivedMessage(event) {
       case 'hello':
       case 'bonjour':
       case '3aslema':
-      sendTextMessage(senderID, "merhbe :D");
+      sendTextMessage(senderID, ":D عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتكم");
       sendListOfChoices(senderID);
         break;
       case 'boutique':
@@ -269,7 +269,7 @@ function receivedMessage(event) {
       sendImageMessage(senderID);
       break;
       default:
-        sendTextMessage("mafhemtikch 3awed akhtar list", messageText);
+        sendTextMessage("الاختيار متاعك مش واضح 😭", messageText);
         sendListOfChoices(senderID);
         
     }
@@ -284,23 +284,29 @@ function sendListOfChoices(recipientId) {
       id: recipientId
     },
     message: {
-      text: "chniya choix mte3ik ?",
+      text: "حدد الاختيار متاعك",
       quick_replies: [
         {
           "content_type":"text",
-          "title":"service",
-          "payload":"service"
+          "title":"الخدمات الخديدة 😁",
+          "payload":"الخدمات الخديدة"
+        },
+	{
+          "content_type":"text",
+          "title":"عروض الانترنات 📝",
+          "payload":"عروض الانترنات"
+        },
+	{
+          "content_type":"text",
+          "title":"اقرب بوتيك 🔭",
+          "payload":"اقرب بوتيك"
         },
         {
           "content_type":"text",
-          "title":"Comedy",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
-        },
-        {
-          "content_type":"text",
-          "title":"Drama",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+          "title":"الاتصال بمرشد الحرفاء 👧👦",
+          "payload":"الاتصال بمرشد الحرفاء"
         }
+        
       ]
     }
   };
