@@ -242,8 +242,8 @@ function receivedMessage(event) {
     return;
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
-    switch (messageText.toLowerCase()) {
-      case 'عروض الانترنات 📝':
+    switch (messageText) {
+      case 'الخدمات الخديدة':
         sendListOfServices(senderID);
         break;
       case 'boutique':
@@ -252,7 +252,7 @@ function receivedMessage(event) {
       case 'guide':
         sendBoutique(senderID);
         break;
-      case 'internet':
+      case 'عروض الانترنات 📝':
         sendBoutique(senderID);
         break;
 
@@ -297,7 +297,7 @@ function sendListOfChoices(recipientId) {
       quick_replies: [
         {
           "content_type":"text",
-          "title":"الخدمات الخديدة 😁",
+          "title":"الخدمات الخديدة",
           "payload":"service"
         },
 	{
