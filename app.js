@@ -243,7 +243,7 @@ function receivedMessage(event) {
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
     switch (messageText.toLowerCase()) {
-      case 'service':
+      case 'عروض الانترنات 📝':
         sendListOfServices(senderID);
         break;
       case 'boutique':
