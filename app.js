@@ -361,18 +361,18 @@ function sendInternetOption(recipientId) {
           text: "قائمة الاختيارات",
           buttons:[{
             type: "web_url",
-            url: "https://www.oculus.com/en-us/rift/",
-            title: "Option 1Go valable 30jours à 5dt"
+            url: "http://www.orange.tn/",
+            title: "Option 1Go"
           },
           {
             type: "web_url",
-            url: "https://www.oculus.com/en-us/rift/",
-            title: "Option Facebook 225 Mo valable 7jours à 0,9dt"
+            url: "http://www.orange.tn/",
+            title: "Option Facebook "
           },
           {
             type: "web_url",
-            url: "https://www.oculus.com/en-us/rift/",
-            title: "Option 1Go valable 30jours à 5dt"
+            url: "http://www.orange.tn/",
+            title: "Option 30jours"
           }
           ]
         }
