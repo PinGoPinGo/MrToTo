@@ -259,9 +259,9 @@ function receivedMessage(event) {
       case 'hello':
       case 'bonjour':
       case '3aslema':
-      //sendTextMessage(senderID, " 😇 عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتكم ");
+      sendTextMessage(senderID, " 😇 عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتكم ");
       sendListOfChoices(senderID);
-        break;
+      break;
       case 'boutique':
       sendBoutique(senderID); 
       break;  
@@ -279,7 +279,6 @@ function receivedMessage(event) {
 }
 
 function sendListOfChoices(recipientId) {
-sendTextMessage(senderID, " 😇 عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتكم ");
   var messageData = {
     recipient: {
       id: recipientId
