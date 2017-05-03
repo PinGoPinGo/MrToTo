@@ -16,7 +16,8 @@ const
   crypto = require('crypto'),
   express = require('express'),
   https = require('https'),
-  sendMsg = require('./sendMessages'),  
+  sendMsg = require('./sendMessages'),
+  receiveMsg = require('./receivedMessages'),  
   request = require('request');
 
 var app = express();
