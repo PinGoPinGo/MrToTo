@@ -17,7 +17,7 @@ const
   express = require('express'),
   https = require('https'),
   sendMsg = require('./sendMessages'),
-  receiveMsg = require('./receivedMessages'),  
+  receiveMsg = require('./receiveMessages'),  
   request = require('request');
 
 var app = express();
