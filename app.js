@@ -100,13 +100,13 @@ app.post('/webhook', function (req, res) {
         } else if (messagingEvent.message) {
           receivedMessage(messagingEvent);
         } else if (messagingEvent.delivery) {
-          receivedDeliveryConfirmation(messagingEvent);
+          sendMsg.receivedDeliveryConfirmation(messagingEvent);
         } else if (messagingEvent.postback) {
-          receivedPostback(messagingEvent);
+          sendMsg.receivedPostback(messagingEvent);
         } else if (messagingEvent.read) {
-          receivedMessageRead(messagingEvent);
+          sendMsg.receivedMessageRead(messagingEvent);
         } else if (messagingEvent.account_linking) {
-          receivedAccountLink(messagingEvent);
+          sendMsg.receivedAccountLink(messagingEvent);
         } else {
           console.log("Webhook received unknown messagingEvent: ", messagingEvent);
         }
