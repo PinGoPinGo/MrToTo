@@ -16,7 +16,7 @@ const
   crypto = require('crypto'),
   express = require('express'),
   https = require('https'),
-  tools = require('./tools');,  
+  tools = require('./tools'),  
   request = require('request');
 
 var app = express();
