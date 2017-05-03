@@ -16,7 +16,7 @@ const
   crypto = require('crypto'),
   express = require('express'),
   https = require('https'),
-  tools = require('./tools'),  
+  sendMsg = require('./sendMessages'),  
   request = require('request');
 
 var app = express();
@@ -199,7 +199,7 @@ function receivedAuthentication(event) {
 
   // When an authentication is received, we'll send a message back to the sender
   // to let them know it was successful.
-  tools.sendTextMessage(senderID, "Authentication successful");
+  sendMsg.sendTextMessage(senderID, "Authentication successful");
 }
 
 /*
@@ -245,21 +245,21 @@ function receivedMessage(event) {
     var quickReplyPayload = quickReply.payload;
     switch (messageText) {
       case 'الخدمات الخديدة':
-        tools.sendListOfServices(senderID);
+        sendMsg.sendListOfServices(senderID);
         break;
       case 'اقرب بوتيك 🔭':
-        tools.sendBoutique(senderID); //boutiquz
+        sendMsg.sendBoutique(senderID); //boutiquz
         break;
       case 'مرشد الحرفاء 👧👦': //guide
-        tools.sendTextMessage(senderID, "غير متاح حاليا");
+        sendMsg.sendTextMessage(senderID, "غير متاح حاليا");
         break;
       case 'عروض الانترنات 📝': //internet
-        tools.sendInternetOption(senderID);
+        sendMsg.sendInternetOption(senderID);
         break;
 
       default:
        //sendTextMessage(senderID,"s"+messageText+"s");
-       tools.sendListOfChoices(senderID);
+       sendMsg.sendListOfChoices(senderID);
    }
 
     return;
@@ -269,20 +269,20 @@ function receivedMessage(event) {
       case 'hello':
       case 'bonjour':
       case '3aslema':
-      tools.sendTextMessage(senderID, "عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتك  😇");
+      sendMsg.sendTextMessage(senderID, "عالسلامة. أنا توتو مرشد الحرفاء الجديد 😎. أنا 24/24 موجود للاجابة على سؤالاتك  😇");
       break;
       case 'merci':
       case 'buy':
-      tools.sendTextMessage(senderID, "مرحبا بيك في كل واقت ☺");
+      sendMsg.sendTextMessage(senderID, "مرحبا بيك في كل واقت ☺");
       break;  
       case 'help':
-      tools.sendListOfChoices(senderID);      
+      sendMsg.sendListOfChoices(senderID);      
       break;
       default:
-        tools.sendTextMessage("الاختيار متاعك مش واضح 😭 send me help", messageText);
+        sendMsg.sendTextMessage("الاختيار متاعك مش واضح 😭 send me help", messageText);
     }
   } else if (messageAttachments) {
-    tools.sendTextMessage(senderID, "Message with attachment received");
+    sendMsg.sendTextMessage(senderID, "Message with attachment received");
   }
 }
 
