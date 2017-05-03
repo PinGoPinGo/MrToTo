@@ -26,7 +26,7 @@ receivedDeliveryConfirmation: function (event) {
  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-received
  * 
  */
-receivedPostback:function (event) {
+receivedPostback: function (event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
   var timeOfPostback = event.timestamp;
@@ -52,7 +52,7 @@ receivedPostback:function (event) {
  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-read
  * 
  */
-receivedMessageRead:function (event) {
+receivedMessageRead: function (event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
 
@@ -75,7 +75,7 @@ receivedMessageRead:function (event) {
  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/account-linking
  * 
  */
-receivedAccountLink:function (event) {
+receivedAccountLink: function (event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
 
@@ -87,7 +87,7 @@ receivedAccountLink:function (event) {
 }
 
 //send list of choices for clients. // will be change with menu 
-sendListOfChoices:function (recipientId) {
+sendListOfChoices: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -126,7 +126,7 @@ sendListOfChoices:function (recipientId) {
 
 
 // send location for boutique orange // will be changed by google maps api
-sendBoutique:function (recipientId) {
+sendBoutique: function (recipientId) {
   var lat  = 36.8485287;
   var long = 10.1871741;
   var messageData = {
@@ -153,7 +153,7 @@ sendBoutique:function (recipientId) {
   callSendAPI(messageData);
 }
 // offerts of internet option
-sendInternetOption:function (recipientId) {
+sendInternetOption: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -197,7 +197,7 @@ sendInternetOption:function (recipientId) {
  * Send an image using the Send API.
  *
  */
-sendImageMessage:function (recipientId) {
+sendImageMessage: function (recipientId) {
    var messageData = {
     recipient: {
       id: recipientId
@@ -219,7 +219,7 @@ sendImageMessage:function (recipientId) {
  * Send a Gif using the Send API.
  *
  */
-sendGifMessage:function (recipientId) {
+sendGifMessage: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -241,7 +241,7 @@ sendGifMessage:function (recipientId) {
  * Send audio using the Send API.
  *
  */
-sendAudioMessage:function (recipientId) {
+sendAudioMessage: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -263,7 +263,7 @@ sendAudioMessage:function (recipientId) {
  * Send a video using the Send API.
  *
  */
-sendVideoMessage:function (recipientId) {
+sendVideoMessage: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -285,7 +285,7 @@ sendVideoMessage:function (recipientId) {
  * Send a file using the Send API.
  *
  */
-sendFileMessage:function (recipientId) {
+sendFileMessage: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -307,7 +307,7 @@ sendFileMessage:function (recipientId) {
  * Send a text message using the Send API.
  *
  */
-sendTextMessage:function (recipientId, messageText) {
+sendTextMessage: function (recipientId, messageText) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -325,7 +325,7 @@ sendTextMessage:function (recipientId, messageText) {
  * Send a button message using the Send API.
  *
  */
-sendButtonMessage:function (recipientId) {
+sendButtonMessage: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -361,7 +361,7 @@ sendButtonMessage:function (recipientId) {
  * Send a Structured Message (Generic Message type) using the Send API.
  *
  */
-sendListOfServices:function (recipientId) {
+sendListOfServices: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -417,7 +417,7 @@ sendListOfServices:function (recipientId) {
  * Send a receipt message using the Send API.
  *
  */
-sendReceiptMessage:function (recipientId) {
+sendReceiptMessage: function (recipientId) {
   // Generate a random receipt ID as the API requires a unique ID
   var receiptId = "order" + Math.floor(Math.random()*1000);
 
@@ -483,7 +483,7 @@ sendReceiptMessage:function (recipientId) {
  * Send a message with Quick Reply buttons.
  *
  */
-sendQuickReply:function (recipientId) {
+sendQuickReply: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
@@ -517,7 +517,7 @@ sendQuickReply:function (recipientId) {
  * Send a read receipt to indicate the message has been read
  *
  */
-sendReadReceipt:function (recipientId) {
+sendReadReceipt: function (recipientId) {
   console.log("Sending a read receipt to mark message as seen");
 
   var messageData = {
@@ -534,7 +534,7 @@ sendReadReceipt:function (recipientId) {
  * Turn typing indicator on
  *
  */
-sendTypingOn:function (recipientId) {
+sendTypingOn: function (recipientId) {
   console.log("Turning typing indicator on");
 
   var messageData = {
@@ -551,7 +551,7 @@ sendTypingOn:function (recipientId) {
  * Turn typing indicator off
  *
  */
-sendTypingOff:function (recipientId) {
+sendTypingOff: function (recipientId) {
   console.log("Turning typing indicator off");
 
   var messageData = {
@@ -568,7 +568,7 @@ sendTypingOff:function (recipientId) {
  * Send a message with the account linking call-to-action
  *
  */
-sendAccountLinking:function (recipientId) {
+sendAccountLinking: function (recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
