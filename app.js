@@ -15,7 +15,8 @@ const
   config = require('config'),
   crypto = require('crypto'),
   express = require('express'),
-  https = require('https'),  
+  https = require('https'),
+  index = require('index'),  
   request = require('request');
 
 var app = express();
@@ -257,8 +258,8 @@ function receivedMessage(event) {
         break;
 
       default:
-       sendTextMessage(senderID,"s"+messageText+"s");
-       sendListOfChoices(senderID);
+       //sendTextMessage(senderID,"s"+messageText+"s");
+       index.sendListOfChoices(senderID);
    }
 
     return;
@@ -275,7 +276,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, "مرحبا بيك في كل واقت ☺");
       break;  
       case 'help':
-      sendListOfChoices(senderID);      
+      index.sendListOfChoices(senderID);      
       break;
       default:
         sendTextMessage("الاختيار متاعك مش واضح 😭 send me help", messageText);
@@ -285,41 +286,6 @@ function receivedMessage(event) {
   }
 }
 
-function sendListOfChoices(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: "حدد الاختيار متاعك",
-      quick_replies: [
-        {
-          "content_type":"text",
-          "title":"الخدمات الخديدة",
-          "payload":"service"
-        },
-	{
-          "content_type":"text",
-          "title":"عروض الانترنات 📝",
-          "payload":"internet"
-        },
-	{
-          "content_type":"text",
-          "title":"اقرب بوتيك 🔭",
-          "payload":"boutique"
-        },
-        {
-          "content_type":"text",
-          "title":"مرشد الحرفاء 👧👦",
-          "payload":"guide"
-        }
-        
-      ]
-    }
-  };
-
-  callSendAPI(messageData);
-}
 
 function sendBoutique(recipientId) {
   var lat  = 36.8485287;
