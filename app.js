@@ -16,7 +16,7 @@ const
   crypto = require('crypto'),
   express = require('express'),
   https = require('https'),
-  index = require('index'),  
+  tools = require('./tools');,  
   request = require('request');
 
 var app = express();
@@ -259,7 +259,7 @@ function receivedMessage(event) {
 
       default:
        //sendTextMessage(senderID,"s"+messageText+"s");
-       index.sendListOfChoices(senderID);
+       tools.sendListOfChoices(senderID);
    }
 
     return;
@@ -276,7 +276,7 @@ function receivedMessage(event) {
       sendTextMessage(senderID, "مرحبا بيك في كل واقت ☺");
       break;  
       case 'help':
-      index.sendListOfChoices(senderID);      
+      tools.sendListOfChoices(senderID);      
       break;
       default:
         sendTextMessage("الاختيار متاعك مش واضح 😭 send me help", messageText);
